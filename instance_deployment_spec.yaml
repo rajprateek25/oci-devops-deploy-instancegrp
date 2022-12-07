@@ -33,7 +33,7 @@ steps:
     command: |
       cd ~
       pid_count=`ps -fe |grep appexec | grep -v grep | wc -l`
-      pid=`ps -fe |grep appexec | grep -v grep |awk '{print $1}'`
+      pid=`ps -fe |grep appexec | grep -v grep |awk '{print $2}'`
       if [[ $pid_count == 1 ]]  ;then kill -9 $pid ; fi
       export OCI_CLI_AUTH=instance_principal
       export PATH=$PATH:~/.local/bin/
