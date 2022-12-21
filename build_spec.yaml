@@ -12,8 +12,9 @@ env:
     TAG: "mn-hello-ni:0.0.1"
     APP_FILE: "MnHelloRest"
     ARTIFACT_FILE_NAME: "exec-app"
-  vaultVariables:
-    ARTIFACT_REPO_OCID_FromVault: ocid1.vaultsecret.oc1.iad.amaaaaaajcisnjia2dftgpqjv64nwjhwvmprugr5ymz6ibnsacdemlvfx5la
+    ARTIFACT_REPO_OCID: "ocid1.artifactrepository.oc1.iad.0.amaaaaaajcisnjiahyliyomd5gbb7vepn2lk2tel5om2yqsre56wbsrrr35q"
+#  vaultVariables:
+#    ARTIFACT_REPO_OCID_FromVault: ocid1.vaultsecret.oc1.iad.amaaaaaajcisnjia2dftgpqjv64nwjhwvmprugr5ymz6ibnsacdemlvfx5la
 
   # exportedVariables are made available to use as parameters in sucessor Build Pipeline stages
   # For this Build to run, the Build Pipeline needs to have a BUILDRUN_HASH parameter set
@@ -30,8 +31,9 @@ steps:
       echo "OCI_BUILD_RUN_ID: ${OCI_BUILD_RUN_ID}"
       export BUILDRUN_HASH=`echo ${OCI_BUILD_RUN_ID} | rev | cut -c 1-7`
       echo "BUILDRUN_HASH: " $BUILDRUN_HASH
-      export ARTIFACT_REPO_OCID=${ARTIFACT_REPO_OCID_FromVault}
+#      export ARTIFACT_REPO_OCID=${ARTIFACT_REPO_OCID_FromVault}
       export ARTIFACT_NAME=${ARTIFACT_FILE_NAME}
+      export ARTIFACT_REPO_OCID=${ARTIFACT_REPO_OCID}
   - type: Command
     name: "Install GraalVM 22.x Native Image for Java17"
     command: |
